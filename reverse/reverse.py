@@ -39,4 +39,36 @@ class LinkedList:
         return False
 
     def reverse_list(self, node, prev):
-        pass
+        
+        """ Recursive Approach """
+        def recursive_reverse(current, previous):
+        # Helper function to keep track of the recursion
+            if not current:  # If no node because we're at the end
+                return previous  # return the previous one
+            
+            new = current.next_node  # saved pointer to next node
+            current.next_node = previous  # reverse order
+            previous = current  # current node set to previous for next recursion
+            current = new  # current becomes the next
+            return recursive_reverse(current, previous)  # Recurse on the function
+        
+        # Update the head as the recursion moves along
+        self.head = recursive_reverse(current=self.head, previous=None)
+
+
+        """ Iterative Approach """
+        # if not self.head:  # If it doesn't exist then be done
+        #     return None
+        # else:
+        #     current = self.head  # start with the head
+        #     new = current.next_node  # the next node is set as new
+        #     current.next_node = None  # the current one (head) points to None
+        #     while new is not None:  # loop through nodes until we get to the tail
+        #         previous = current  # the head gets stored as previous
+        #         current = new  # the second node is set to current
+        #         new = current.next_node  # third node gets stored as new
+        #         current.next_node = previous  # the head gets pointed to by the current node
+        #     self.head = current  # what was the tail becomes the head
+
+
+
