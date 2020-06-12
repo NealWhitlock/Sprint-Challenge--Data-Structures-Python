@@ -9,8 +9,8 @@ class RingBuffer:
         if len(self.storage) == self.capacity:  # if the list is full
             self.storage.pop(loc)  # remove item in the index location
             self.storage.insert(loc, item)  # put new item in that spot
-        else:
-            self.storage.append(item)
+        else:  # if the list isn't already full
+            self.storage.append(item)  # start filling it up
         self.counter += 1  # increment counter
 
     def get(self):
