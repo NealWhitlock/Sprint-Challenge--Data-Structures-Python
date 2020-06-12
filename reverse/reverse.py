@@ -38,22 +38,22 @@ class LinkedList:
 
         return False
 
-    def reverse_list(self, node, prev):
+    # def reverse_list(self, node, prev):
         
         """ Recursive Approach """
-        def recursive_reverse(current, previous):
-        # Helper function to keep track of the recursion
-            if not current:  # If no node because we're at the end
-                return previous  # return the previous one
+        # def recursive_reverse(current, previous):
+        # # Helper function to keep track of the recursion
+        #     if not current:  # If no node because we're at the end
+        #         return previous  # return the previous one
             
-            new = current.next_node  # saved pointer to next node
-            current.next_node = previous  # reverse order
-            previous = current  # current node set to previous for next recursion
-            current = new  # current becomes the next
-            return recursive_reverse(current, previous)  # Recurse on the function
+        #     new = current.next_node  # saved pointer to next node
+        #     current.next_node = previous  # reverse order
+        #     previous = current  # current node set to previous for next recursion
+        #     current = new  # current becomes the next
+        #     return recursive_reverse(current, previous)  # Recurse on the function
         
-        # Update the head as the recursion moves along
-        self.head = recursive_reverse(current=self.head, previous=None)
+        # # Update the head as the recursion moves along
+        # self.head = recursive_reverse(current=self.head, previous=None)
 
 
         """ Iterative Approach """
@@ -71,4 +71,14 @@ class LinkedList:
         #     self.head = current  # what was the tail becomes the head
 
 
-
+    """ Straight-Forward Recursive Approach (Solution) """
+    def reverse_list(self, node,  prev):
+        # Nothing changes in empty or single lists
+        if node is None:
+            return
+        if node.next_node is None:
+            self.head = node
+            self.head.next_node = prev
+        else:
+            self.reverse_list(node.next_node, node)
+            node.next_node = prev
